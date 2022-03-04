@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <h1 id="JC1">JC1</h1>
+        <button onclick="location.href = 'http://localhost:3000'">Home</button>
+        <p>Please Scan the Sample's Barcode</p>
+        <input type="text" name="" id="input">
+        <script>
+            var input = document.getElementById('input');
+            input.select();
+            input.addEventListener('keydown', function(e) {
+                if(e.code === 'Enter') {
+                    var url = new URL('http://localhost:3000/addSampleInfo');
+                    url.searchParams.set('sampleId', input.value);
+                    location.href = url;
+                }
+            });
+        </script>
+    </body>
+</html>

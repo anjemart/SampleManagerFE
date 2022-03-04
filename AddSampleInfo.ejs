@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <h1 id="JC1">JC1</h1>
+        <button onclick="location.href = 'http://localhost:3000'">Home</button>
+        <p id="sampleInput"></p>
+        <input type="text" name="" id="input">
+
+        <script>
+            var input = document.getElementById('input');
+            input.select();
+            var itemId = new URL(location.href).searchParams.get('sampleId');
+            document.getElementById('sampleInput').innerHTML = 'Enter Sample Name for ID: ' + itemId;
+            input.addEventListener('keydown', function(e) {
+                if(e.code === 'Enter') {
+                    alert('Thanks for adding sample with Name "' + input.value + '" and ID "' + itemId + '"');
+                    location.href = 'http://localhost:3000/';
+                }
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <p>Made it to the parse page</p>
+        <script>
+            var params = new URL(location.href).searchParams;
+            var firstName = params.get('firstName');
+            var lastName = params.get('lastName');
+            var homePhone = params.get('homePhone');
+            var cellPhone = params.get('cellPhone');
+            var email = params.get('email');
+            alert(`Saving customer information for ${firstName} ${lastName}, with home number ${homePhone}, cell number ${cellPhone}, and email ${email}`);
+            location.href = 'http://localhost:3000';
+        </script>
+    </body>
+</html>

@@ -25,3 +25,7 @@ app.get('/addCustomer', (req, res, next) => {
 app.get('/saveCustomer', (req, res, next) => {
     res.render(path.join(__dirname, 'SaveCustomer.ejs'));
 });
+
+app.get('/viewSamples', (req, res, next) => {
+    res.render(path.join(__dirname, 'ViewSamples.ejs'));
+})

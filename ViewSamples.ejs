@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <p>Data from the request</p>
+        <p id="data"></p>
+        <script>
+            document.getElementById('data').innerHTML = httpGet('http://localhost:8889');
+            function httpGet(theUrl) {
+                var xmlHttp = new XMLHttpRequest();
+                xmlHttp.open( "GET", theUrl, false );
+                xmlHttp.send( null );
+                return xmlHttp.responseText;
+            }
+        </script>
+    </body>
+</html>

@@ -14,12 +14,26 @@
             input.select();
             var itemId = new URL(location.href).searchParams.get('sampleId');
             document.getElementById('sampleInput').innerHTML = 'Enter Sample Name for ID: ' + itemId;
+            
             input.addEventListener('keydown', function(e) {
                 if(e.code === 'Enter') {
+                    var sample = {
+                        "externalId": itemId,
+                        "name": input.value
+                    }
+                    addSampleInfo(sample);
                     alert('Thanks for adding sample with Name "' + input.value + '" and ID "' + itemId + '"');
                     location.href = 'http://localhost:3000/';
                 }
             });
+
+            function addSampleInfo(sample) {
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", 'http://localhost:8889/addSample', true);
+                xhr.setRequestHeader('Content-Type', 'application/json');
+                xhr.send(JSON.stringify(sample));
+            }
+
         </script>
     </body>
 </html>

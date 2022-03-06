@@ -10,8 +10,26 @@
             var homePhone = params.get('homePhone');
             var cellPhone = params.get('cellPhone');
             var email = params.get('email');
+            var customer = {
+                "firstName": firstName,
+                "lastName": lastName,
+                "homePhone": homePhone,
+                "cellPhone": cellPhone,
+                "email": email
+            }
+            addCustomerInfo(customer);
             alert(`Saving customer information for ${firstName} ${lastName}, with home number ${homePhone}, cell number ${cellPhone}, and email ${email}`);
             location.href = 'http://localhost:3000';
+
+
+
+
+            function addCustomerInfo(customer) {
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", 'http://localhost:8889/addCustomer', true);
+                xhr.setRequestHeader('Content-Type', 'application/json');
+                xhr.send(JSON.stringify(customer));
+            }
         </script>
     </body>
 </html>

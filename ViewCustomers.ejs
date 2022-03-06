@@ -7,7 +7,7 @@
         <p>Data from the request</p>
         <p id="data"></p>
         <script>
-            document.getElementById('data').innerHTML = httpGet('http://localhost:8889/getSamples');
+            document.getElementById('data').innerHTML = httpGet('http://localhost:8889/getCustomers');
             function httpGet(theUrl) {
                 var xmlHttp = new XMLHttpRequest();
                 xmlHttp.open( "GET", theUrl, false );

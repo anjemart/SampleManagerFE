@@ -28,12 +28,12 @@ app.get('/saveCustomer', (req, res, next) => {
 
 app.get('/viewSamples', (req, res, next) => {
     res.render(path.join(__dirname, 'ViewSamples.ejs'));
-})
+});
 
 app.get('/viewCustomers', (req, res, next) => {
     res.render(path.join(__dirname, 'ViewCustomers.ejs'));
-})
+});
 
 app.get('/viewCheckedOutSamples', (req, res, next) => {
     res.render(path.join(__dirname, 'ViewCheckedOutSamples.ejs'));
-})
+});

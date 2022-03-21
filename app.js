@@ -13,29 +13,29 @@ app.get('/', (req, res, next) => {
 });
 
 app.get('/addSample', (req, res, next) => {
-    res.render(path.join(__dirname, 'AddSample.ejs'));
+    res.render(path.join(__dirname, 'add', 'AddSample.ejs'));
 });
 
 app.get('/addSampleInfo', (req, res, next) => {
-    res.render(path.join(__dirname, 'AddSampleInfo.ejs'));
+    res.render(path.join(__dirname, 'add', 'AddSampleInfo.ejs'));
 });
 
 app.get('/addCustomer', (req, res, next) => {
-    res.render(path.join(__dirname, 'AddCustomer.ejs'));
+    res.render(path.join(__dirname, 'add', 'AddCustomer.ejs'));
 });
 
 app.get('/saveCustomer', (req, res, next) => {
-    res.render(path.join(__dirname, 'SaveCustomer.ejs'));
+    res.render(path.join(__dirname, 'add', 'SaveCustomer.ejs'));
 });
 
 app.get('/viewSamples', (req, res, next) => {
-    res.render(path.join(__dirname, 'ViewSamples.ejs'));
+    res.render(path.join(__dirname, 'lookup', 'ViewSamples.ejs'));
 });
 
 app.get('/viewCustomers', (req, res, next) => {
-    res.render(path.join(__dirname, 'ViewCustomers.ejs'));
+    res.render(path.join(__dirname, 'lookup', 'ViewCustomers.ejs'));
 });
 
 app.get('/viewCheckedOutSamples', (req, res, next) => {
-    res.render(path.join(__dirname, 'ViewCheckedOutSamples.ejs'));
+    res.render(path.join(__dirname, 'lookup', 'ViewCheckedOutSamples.ejs'));
 });

@@ -2,7 +2,9 @@ const express = require('express');
 const path = require('path');
 let app = express();
 
+//define public folder for static files
 app.use(express.static('public'));
+
 app.set('view engine', 'ejs');
 app.listen(3000);
 

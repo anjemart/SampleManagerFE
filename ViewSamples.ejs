@@ -1,18 +1,45 @@
 <!DOCTYPE html>
 <html>
-    <head></head>
+    <head>
+        <link rel="stylesheet" href="baseStyle.css">
+    </head>
     <body>
         <h1 id="JC1">JC1</h1>
+        <img src="carpetOne.png" alt="" id="carpetOne">
+        <br>
+        <br>
+        <br>
         <button onclick="location.href = 'http://localhost:3000'">Home</button>
         <p>Data from the request</p>
         <p id="data"></p>
         <script>
-            document.getElementById('data').innerHTML = httpGet('http://localhost:8889/getSamples');
+            var data = JSON.parse(httpGet('http://localhost:8889/getSamples'));
+            
+            document.getElementById('data').innerHTML = createTable(data);
             function httpGet(theUrl) {
                 var xmlHttp = new XMLHttpRequest();
                 xmlHttp.open( "GET", theUrl, false );
                 xmlHttp.send( null );
                 return xmlHttp.responseText;
+            }
+
+            function createTable(jsonData) {
+                var tableInfo = `<table>
+                    <tr>
+                        <th>ID</th>
+                        <th>Sample Name</th>
+                        <th>Sample Barcode</th>
+                    </tr>`;
+                
+                for(var item of data) {
+                    tableInfo += `<tr>
+                        <td>${item.id}</td>
+                        <td>${item.name}</td>
+                        <td>${item.externalId}</td>
+                    </tr>`
+                }
+                tableInfo += '</table>';
+                return tableInfo;
             }
         </script>
     </body>

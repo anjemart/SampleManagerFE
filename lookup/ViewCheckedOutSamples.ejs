@@ -24,7 +24,7 @@
             }
 
             function createTable(jsonData) {
-                var tableInfo = `<table>
+                var tableInfo = `<table id="relationships">
                     <tr>
                         <th>ID</th>
                         <th>First Name</th>
@@ -47,7 +47,7 @@
                         <td>${item.customer.email}</td>
                         <td>${item.sample.name}</td>
                         <td>${item.lastModifiedOn.dateTime.date.month + "/" + item.lastModifiedOn.dateTime.date.day + "/" + item.lastModifiedOn.dateTime.date.year}</td>
-                        <td><input type="checkbox" id="${item.id}" ${item.followedUp ? "checked": ""}></td>
+                        <td><input type="checkbox" id="${item.id}" ${item.followedUp ? "checked disabled": ""}></td>
                     </tr>`
                 }
                 tableInfo += '</table>';
@@ -55,7 +55,25 @@
             }
 
             function saveSelecitons() {
+                var ids = [];
+                var relationships = document.getElementById("relationships");
+                for(var i = 0, row; row = relationships.rows[i]; i++) {
+                    if(i != 0) {
+                        if(row.cells[8].firstChild.checked && !row.cells[8].firstChild.disabled){
+                            ids.push(row.cells[8].firstChild.id);
+                            console.log(ids);
+                        }
+                    }
+                }
+
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", 'http://localhost:8889/markFollowedUp', true);
+                xhr.setRequestHeader('Content-Type', 'application/json');
+                xhr.send(JSON.stringify(ids));
+
                 alert('Selections Saved');
+
+                location.href = location.href;
             }
         </script>
     </body>

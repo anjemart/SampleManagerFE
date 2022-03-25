@@ -10,7 +10,7 @@
         <br>
         <br>
         <button onclick="location.href = 'http://localhost:3000'">Home</button>
-        <button>Mark Selected Followed Up</button>
+        <button onclick="saveSelecitons()">Mark Selected Followed Up</button>
         <p id="data"></p>
         <script>
             var data = JSON.parse(httpGet('http://localhost:8889/getCheckedOutSamples'));
@@ -52,6 +52,10 @@
                 }
                 tableInfo += '</table>';
                 return tableInfo;
+            }
+
+            function saveSelecitons() {
+                alert('Selections Saved');
             }
         </script>
     </body>

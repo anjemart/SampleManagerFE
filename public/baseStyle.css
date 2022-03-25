@@ -6,12 +6,12 @@ body {
 /*Header Stuff*/
 
 h1 {
-    color: #999999;
+    color: black;
     font-family: arial, sans-serif;
     font-size: 16px;
     font-weight: bold;
-    margin-top: 0px;
-    margin-bottom: 1px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 p {

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="baseStyle.css">
+    </head>
+    <body>
+        <h1 id="JC1">JC1</h1>
+        <img src="carpetOne.png" alt="" id="carpetOne">
+        <br>
+        <br>
+        <br>
+        <button onclick="location.href = 'http://localhost:3000'">Home</button>
+        <button onclick="comfirmSelections()">Confirm Selections</button>
+        <p id="data"></p>
+        <script>
+            var data = JSON.parse(httpGet('http://localhost:8889/getSamples'));
+            
+            document.getElementById('data').innerHTML = createTable(data);
+            function httpGet(theUrl) {
+                var xmlHttp = new XMLHttpRequest();
+                xmlHttp.open( "GET", theUrl, false );
+                xmlHttp.send( null );
+                return xmlHttp.responseText;
+            }
+
+            function createTable(jsonData) {
+                var tableInfo = `<table id="sampleTable">
+                    <tr>
+                        <th>ID</th>
+                        <th>Sample Name</th>
+                        <th>Sample Barcode</th>
+                        <th>Select</th>
+                    </tr>`;
+                
+                for(var item of data) {
+                    tableInfo += `<tr>
+                        <td>${item.id}</td>
+                        <td>${item.name}</td>
+                        <td>${item.externalId}</td>
+                        <td><input type="checkbox" id="${item.id}"></td>
+                    </tr>`
+                }
+                tableInfo += '</table>';
+                return tableInfo;
+            }
+
+            function comfirmSelections() {
+                var ids = [];
+                var sampleTable = document.getElementById("sampleTable");
+                for(var i = 0, row; row = sampleTable.rows[i]; i++) {
+                    if(i != 0) {
+                        if(row.cells[3].firstChild.checked){
+                            ids.push(row.cells[3].firstChild.id);
+                        }
+                        console.log(ids);
+                    }
+                }
+                if(ids.length == 0) {
+                    alert('At least one sample must be selected');
+                } else {
+                    var url = new URL('http://localhost:3000/selectCustomer');
+                    url.searchParams.set('sampleIds', ids);
+                    location.href = url;
+                }
+            }
+        </script>
+    </body>
+</html>

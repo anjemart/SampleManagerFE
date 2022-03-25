@@ -20,7 +20,7 @@
             document.getElementById('sampleInput').innerHTML = 'Enter Sample Name for ID: ' + itemId;
             
             input.addEventListener('keydown', function(e) {
-                if(e.code === 'Enter') {
+                if(e.code === 'Enter' || e.code === 'NumpadEnter') {
                     var sample = {
                         "externalId": itemId,
                         "name": input.value

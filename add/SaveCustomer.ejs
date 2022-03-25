@@ -22,9 +22,6 @@
             alert(`Saving customer information for ${firstName} ${lastName}, with home number ${homePhone}, cell number ${cellPhone}, and email ${email}`);
             location.href = 'http://localhost:3000';
 
-
-
-
             function addCustomerInfo(customer) {
                 var xhr = new XMLHttpRequest();
                 xhr.open("POST", 'http://localhost:8889/addCustomer', true);

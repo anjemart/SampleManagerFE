@@ -10,15 +10,47 @@
         <br>
         <br>
         <button onclick="location.href = 'http://localhost:3000'">Home</button>
-        <p>Data from the request</p>
+        <button>Mark Selected Followed Up</button>
         <p id="data"></p>
         <script>
-            document.getElementById('data').innerHTML = httpGet('http://localhost:8889/getCheckedOutSamples');
+            var data = JSON.parse(httpGet('http://localhost:8889/getCheckedOutSamples'));
+            document.getElementById('data').innerHTML += createTable(data);
             function httpGet(theUrl) {
                 var xmlHttp = new XMLHttpRequest();
                 xmlHttp.open( "GET", theUrl, false );
                 xmlHttp.send( null );
                 return xmlHttp.responseText;
+            }
+
+            function createTable(jsonData) {
+                var tableInfo = `<table>
+                    <tr>
+                        <th>ID</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Home Phone</th>
+                        <th>Cell Phone</th>
+                        <th>Email</th>
+                        <th>Sample Name</th>
+                        <th>Date</th>
+                        <th>Followed Up</th>
+                    </tr>`;
+                
+                for(var item of data) {
+                    tableInfo += `<tr>
+                        <td>${item.id}</td>
+                        <td>${item.customer.firstName}</td>
+                        <td>${item.customer.lastName}</td>
+                        <td>${item.customer.homePhone}</td>
+                        <td>${item.customer.cellPhone}</td>
+                        <td>${item.customer.email}</td>
+                        <td>${item.sample.name}</td>
+                        <td>${item.lastModifiedOn.dateTime.date.month + "/" + item.lastModifiedOn.dateTime.date.day + "/" + item.lastModifiedOn.dateTime.date.year}</td>
+                        <td><input type="checkbox" id="${item.id}"></td>
+                    </tr>`
+                }
+                tableInfo += '</table>';
+                return tableInfo;
             }
         </script>
     </body>

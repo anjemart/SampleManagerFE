@@ -43,16 +43,33 @@
                         <td>${item.homePhone}</td>
                         <td>${item.cellPhone}</td>
                         <td>${item.email}</td>
-                        <td><button onclick = "checkoutSamples()">Select</button></td>
+                        <td><button onclick = "checkoutSamples(${item.id})">Select</button></td>
                     </tr>`
                 }
                 tableInfo += '</table>';
                 return tableInfo;
             }
 
-            function checkoutSamples() {
+            function checkoutSamples(customerId) {
+                var url = new URL(location.href);
+                var sampleIds = url.searchParams.get('sampleIds').split(",");
+
                 var url = new URL('http://localhost:3000/');
-                location.href = url;
+                url.searchParams.set("sampleIds", sampleIds);
+                url.searchParams.set("customerId", sampleIds);
+
+                var relationships = {
+                    "customerId": customerId, 
+                    "sampleIds": sampleIds
+                }
+
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", 'http://localhost:8889/addCheckedOutSamples', true);
+                xhr.setRequestHeader('Content-Type', 'application/json');
+                xhr.send(JSON.stringify(relationships));
+                
+                var home = new URL('http://localhost:3000/');
+                location.href = home;
             }
         </script>
     </body>
